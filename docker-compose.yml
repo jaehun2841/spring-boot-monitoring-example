@@ -1,0 +1,38 @@
+version: '3'
+services:
+  grafana:
+   image: grafana/grafana
+   ports:
+     - "3000:3000"
+   container_name: grafana
+   links:
+     - graphite
+
+  graphite:
+    image: graphiteapp/graphite-statsd
+    ports:
+      - "80:80"
+      - "2003-2004:2003-2004"
+      - "2023-2024:2023-2024"
+      - "8125:8125/udp"
+      - "8126:8126"
+    container_name: graphite
+
+  telegraf:
+    image: jaehun2841/telegraf:1.12.0
+    container_name: telegraf
+    environment:
+      TELEGRAF_SERVICE: "monitoring-test"
+      TELEGRAF_ROLE: "collecting-springboot-metric"
+      TELEGRAF_METRIC_COLLECT_URL: "graphite:2003"
+    links:
+      - graphite
+    depends_on:
+      - graphite
+#  volumns:
+#    - /telegraf/data:/telegraf/data
+#    - /telegraf/logs:/telegraf/logs
+#  jolokia:
+#    image:
+# Spring application
+

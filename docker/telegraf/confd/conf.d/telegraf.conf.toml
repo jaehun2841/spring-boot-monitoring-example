@@ -1,0 +1,6 @@
+[template]
+prefix = "/telegraf"
+log-level = "debug"
+src = "telegraf.conf.tmpl"
+dest = "/telegraf/conf/telegraf.conf"
+keys = [ "/" ]
