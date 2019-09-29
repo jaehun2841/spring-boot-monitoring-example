@@ -1,1 +1,21 @@
-
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+      base-path: "/application"
+  endpoint:
+    beans:
+      cache:
+        time-to-live: "1000ms"
+    health:
+      show-details: always
+  info:
+    git:
+      enabled: true
+      mode: full
+  metrics:
+    export:
+      graphite:
+        host: graphite
+        port: 2003

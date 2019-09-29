@@ -29,9 +29,9 @@ services:
       - graphite
     depends_on:
       - graphite
-#  volumns:
-#    - /telegraf/data:/telegraf/data
-#    - /telegraf/logs:/telegraf/logs
+#    volumes:
+#      - /telegraf/data:/telegraf/data
+#      - /telegraf/logs:/telegraf/logs
 #  jolokia:
 #    image:
 # Spring application
