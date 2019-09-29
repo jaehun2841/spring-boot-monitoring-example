@@ -35,4 +35,15 @@ services:
 #  jolokia:
 #    image:
 # Spring application
-
+  monitoring-app:
+    image: jaehun2841/monitoring:1.0
+    container_name: monitoring
+    environment:
+      MONITORING_GRAPHITE_URL: "graphite"
+      MONITORING_GRAPHITE_PORT: "2003"
+    ports:
+      - "9090:8080"
+    links:
+      - graphite
+    depends_on:
+      - graphite
